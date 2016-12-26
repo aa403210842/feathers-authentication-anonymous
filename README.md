@@ -1,5 +1,7 @@
 # feathers-authentication-anonymous
 
+### not published yet
+
 > Anonymous authentication strategy for feathers-authentication using Passport
 
 ## Installation
@@ -47,40 +49,6 @@ app.post('/users', auth.express.authenticate(['jwt', 'anon']), function(req, res
 ```
 Additional [passport-anonymous](https://github.com/jaredhanson/passport-anonymous) options can be provided.
 
-## Complete Example
-
-Here's a basic example of a Feathers server that uses `feathers-authentication-anonymous`. You can see a fully working example in the [example/](./example/) directory.
-
-```js
-const feathers = require('feathers');
-const rest = require('feathers-rest');
-const hooks = require('feathers-hooks');
-const memory = require('feathers-memory');
-const bodyParser = require('body-parser');
-const errorHandler = require('feathers-errors/handler');
-const auth = require('feathers-authentication');
-const jwt = require('feathers-authentication-jwt');
-const anonymous = require('feathers-authentication-anonymous')
-
-// Initialize the application
-const app = feathers()
-  .configure(rest())
-  .configure(hooks())
-  // Needed for parsing bodies (login)
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
-  // Configure feathers-authentication
-  .configure(auth({ secret: 'super secret' }))
-  .configure(jwt())
-  .configure(anonymous())
-  .use('/users', memory())
-  .use(errorHandler());
-
-app.listen(3030);
-
-console.log('Feathers app started on 127.0.0.1:3030');
-```
-
 ## Hooks
 This usefull for endpoint, return difference results
 ```js
@@ -116,6 +84,40 @@ app.service('users').hooks({
     ]
   }
 });
+```
+
+## Complete Example
+
+Here's a basic example of a Feathers server that uses `feathers-authentication-anonymous`. You can see a fully working example in the [example/](./example/) directory.
+
+```js
+const feathers = require('feathers');
+const rest = require('feathers-rest');
+const hooks = require('feathers-hooks');
+const memory = require('feathers-memory');
+const bodyParser = require('body-parser');
+const errorHandler = require('feathers-errors/handler');
+const auth = require('feathers-authentication');
+const jwt = require('feathers-authentication-jwt');
+const anonymous = require('feathers-authentication-anonymous')
+
+// Initialize the application
+const app = feathers()
+  .configure(rest())
+  .configure(hooks())
+  // Needed for parsing bodies (login)
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
+  // Configure feathers-authentication
+  .configure(auth({ secret: 'super secret' }))
+  .configure(jwt())
+  .configure(anonymous())
+  .use('/users', memory())
+  .use(errorHandler());
+
+app.listen(3030);
+
+console.log('Feathers app started on 127.0.0.1:3030');
 ```
 
 ## License
