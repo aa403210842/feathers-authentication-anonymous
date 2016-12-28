@@ -21,8 +21,7 @@
     "watch": "babel --watch -d lib/ src/",
     "lint": "standard src/**/*.js test/**/*.js --fix",
     "mocha": "mocha --opts mocha.opts",
-    "coverage": "istanbul cover _mocha -- --opts mocha.opts",
-    "test": "npm run compile && npm run lint && npm run coverage",
+    "test": "npm run compile && npm run lint && npm run mocha",
     "start": "npm run compile && node example/app"
   },
   "author": {
@@ -38,9 +37,8 @@
     "node": ">= 4.6.0"
   },
   "dependencies": {
-    "debug": "^2.5.1",
+    "debug": "^2.5.2",
     "feathers-errors": "^2.5.0",
-    "lodash.merge": "^4.6.0",
     "passport-anonymous": "^1.0.1"
   },
   "devDependencies": {
@@ -57,10 +55,25 @@
     "feathers-memory": "^1.0.1",
     "feathers-rest": "^1.5.2",
     "feathers-socketio": "^1.4.2",
+    "lodash.omit": "^4.5.0",
     "mocha": "^3.2.0",
     "rimraf": "^2.5.4",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "standard": "^8.6.0"
+  },
+  "standard": {
+    "ignore": [
+      "docs/**"
+    ],
+    "globals": [
+      "module",
+      "describe",
+      "it",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach"
+    ]
   }
 }

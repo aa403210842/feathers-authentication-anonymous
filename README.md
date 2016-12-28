@@ -57,9 +57,8 @@ function afterGetUsers () {
   return function(hook) {
     const { authenticated } = hook.params
     if (!authenticated) {
-      // delete phone field
-      const { phone, ...others } = hook.result
-      hook.result = others
+      // delete password field
+      hook.result = omit(hook.result, ['password'])
     }
     return hook
   }
