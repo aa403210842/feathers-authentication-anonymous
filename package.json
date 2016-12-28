@@ -1,6 +1,6 @@
 {
   "name": "feathers-authentication-anonymous",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Anonymous authentication strategy for feathers-authentication using Passport",
   "main": "lib/",
   "keywords": [
