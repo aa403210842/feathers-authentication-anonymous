@@ -1,7 +1,5 @@
 # feathers-authentication-anonymous
 
-### not published yet
-
 > Anonymous authentication strategy for feathers-authentication using Passport
 
 ## Installation
