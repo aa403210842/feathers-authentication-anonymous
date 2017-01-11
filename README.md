@@ -50,6 +50,7 @@ Additional [passport-anonymous](https://github.com/jaredhanson/passport-anonymou
 ## Hooks
 This usefull for endpoint, return difference results
 ```js
+const hooks = require('feathers-hooks-common')
 
 function afterGetUsers () {
   return function(hook) {
@@ -59,6 +60,13 @@ function afterGetUsers () {
       hook.result = omit(hook.result, ['password'])
     }
     return hook
+  }
+}
+//user remove hook
+function isAuthenticated () {
+  return function(hook) {
+    const { authenticated } = hook.params
+    return authenticated
   }
 }
 
@@ -78,6 +86,8 @@ app.service('users').hooks({
   after: {
     get: [
       afterGetUsers()
+      // or
+      hooks.iff(isAuthenticated(), hooks.remove('password'))
     ]
   }
 });
